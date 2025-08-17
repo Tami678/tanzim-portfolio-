@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanzim Akhtar - Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+        }
+        .container {
+            max-width: 1200px;
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 70%;
+            height: 4px;
+            background-color: #e94560;
+            border-radius: 9999px;
+        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #2a2a44;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e94560;
+            border-radius: 9999px;
+        }
+
+        /* CSS for the blinking cursor animation */
+        .blinking-cursor {
+            font-weight: 100;
+            color: #e94560;
+            -webkit-animation: 1s blink step-end infinite;
+            -moz-animation: 1s blink step-end infinite;
+            -ms-animation: 1s blink step-end infinite;
+            -o-animation: 1s blink step-end infinite;
+            animation: 1s blink step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to { color: transparent }
+            50% { color: #e94560; }
+        }
+
+        @-moz-keyframes blink {
+            from, to { color: transparent }
+            50% { color: #e94560; }
+        }
+
+        @-webkit-keyframes blink {
+            from, to { color: transparent }
+            50% { color: #e94560; }
+        }
+
+        @-ms-keyframes blink {
+            from, to { color: transparent }
+            50% { color: #e94560; }
+        }
+
+        @-o-keyframes blink {
+            from, to { color: transparent }
+            50% { color: #e94560; }
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 bg-gray-900 bg-opacity-90 backdrop-blur-md shadow-lg py-4">
+        <nav class="container mx-auto flex justify-between items-center px-6 md:px-12">
+            <a href="#home" class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-pink-600">
+                Tanzim Akhtar
+            </a>
+            <div class="hidden md:flex space-x-8 text-white">
+                <a href="#about" class="hover:text-red-400 transition duration-300">About</a>
+                <a href="#skills" class="hover:text-red-400 transition duration-300">Skills</a>
+                <a href="#projects" class="hover:text-red-400 transition duration-300">Projects</a>
+                <a href="#contact" class="hover:text-red-400 transition duration-300">Contact</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900 bg-opacity-90 backdrop-blur-md absolute w-full py-4 text-center mt-2">
+            <a href="#about" class="block py-2 text-white hover:text-red-400">About</a>
+            <a href="#skills" class="block py-2 text-white hover:text-red-400">Skills</a>
+            <a href="#projects" class="block py-2 text-white hover:text-red-400">Projects</a>
+            <a href="#contact" class="block py-2 text-white hover:text-red-400">Contact</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-24">
+
+        <!-- Hero Section -->
+        <section id="home" class="container mx-auto px-6 md:px-12 py-24 text-center">
+            <div class="flex flex-col items-center">
+                <!-- Image tag removed as per user request -->
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 leading-tight">
+                    Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-pink-600">Tanzim Akhtar</span>
+                </h1>
+                <!-- The text that will be animated -->
+                <p class="text-xl md:text-2xl text-gray-300 mb-2">
+                    <span id="typing-text"></span><span class="blinking-cursor">|</span>
+                </p>
+                <a href="#projects" class="inline-block bg-gradient-to-r from-red-500 to-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-xl">
+                    View My Projects
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="container mx-auto px-6 md:px-12 py-20">
+            <div class="bg-gray-800 rounded-2xl p-8 md:p-16 shadow-lg">
+                <h2 class="section-title text-3xl font-bold mb-12 text-white">About Me</h2>
+                <div class="prose prose-lg prose-invert text-gray-300">
+                    <p>
+                        I am a dedicated and passionate Information Technology student with a B.Tech from NIST University. My academic journey has provided me with a strong foundation in core IT principles, including software development, data structures, and network management. I am eager to apply my skills and knowledge to solve real-world problems.
+                    </p>
+                    <p>
+                        Throughout my studies, I have developed a keen interest in [mention a specific field, e.g., web development, data science, cybersecurity]. I enjoy building projects from the ground up and am always looking for opportunities to learn new technologies and collaborate on innovative ideas. This portfolio showcases some of my personal and academic projects.
+                    </p>
+                </div>
+                
+                <!-- Education Details -->
+                <div class="mt-12">
+                    <h3 class="text-2xl font-semibold mb-4 text-white">Education</h3>
+                    <div class="bg-gray-700 rounded-xl p-6 shadow-md transition duration-300 hover:scale-[1.02]">
+                        <h4 class="text-lg md:text-xl font-bold text-white">B.Tech in Information Technology, NIST University</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="container mx-auto px-6 md:px-12 py-20">
+            <h2 class="section-title text-3xl font-bold mb-12 text-white">My Skills</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Skill Card 1: Programming Languages -->
+                <div class="bg-gray-800 rounded-2xl p-6 shadow-md border border-transparent transition duration-300 hover:border-red-500">
+                    <h3 class="text-xl font-semibold mb-4 text-white">Programming Languages</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li class="flex items-center space-x-2"><i class="fab fa-python text-blue-400"></i><span>Python</span></li>
+                        <li class="flex items-center space-x-2"><i class="fab fa-java text-orange-500"></i><span>Java</span></li>
+                        <li class="flex items-center space-x-2"><i class="fab fa-js text-yellow-400"></i><span>JavaScript</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-c text-blue-600"></i><span>C++</span></li>
+                    </ul>
+                </div>
+                <!-- Skill Card 2: Web Development -->
+                <div class="bg-gray-800 rounded-2xl p-6 shadow-md border border-transparent transition duration-300 hover:border-red-500">
+                    <h3 class="text-xl font-semibold mb-4 text-white">Web Development</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li class="flex items-center space-x-2"><i class="fab fa-js-square text-yellow-400"></i><span>JavaScript</span></li>
+                        <li class="flex items-center space-x-2"><i class="fab fa-html5 text-orange-500"></i><span>HTML5 & CSS3</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-brands fa-css3-alt text-blue-500"></i><span>Tailwind CSS</span></li>
+                        <li class="flex items-center space-x-2"><i class="fab fa-react text-cyan-400"></i><span>React</span></li>
+                        <li class="flex items-center space-x-2"><i class="fab fa-node-js text-green-500"></i><span>Node.js</span></li>
+                    </ul>
+                </div>
+                <!-- Skill Card 3: Databases -->
+                <div class="bg-gray-800 rounded-2xl p-6 shadow-md border border-transparent transition duration-300 hover:border-red-500">
+                    <h3 class="text-xl font-semibold mb-4 text-white">Databases</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li class="flex items-center space-x-2"><i class="fas fa-database text-blue-400"></i><span>MySQL</span></li>
+                        <li class="flex items-center space-x-2"><i class="fas fa-database text-green-500"></i><span>PostgreSQL</span></li>
+                        <li class="flex items-center space-x-2"><i class="fas fa-leaf text-green-400"></i><span>MongoDB</span></li>
+                    </ul>
+                </div>
+                <!-- Skill Card 4: Tools & Technologies -->
+                <div class="bg-gray-800 rounded-2xl p-6 shadow-md border border-transparent transition duration-300 hover:border-red-500">
+                    <h3 class="text-xl font-semibold mb-4 text-white">Tools & Technologies</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li class="flex items-center space-x-2"><i class="fab fa-git-alt text-orange-600"></i><span>Git & GitHub</span></li>
+                        <li class="flex items-center space-x-2"><i class="fab fa-docker text-blue-500"></i><span>Docker</span></li>
+                        <li class="flex items-center space-x-2"><i class="fab fa-aws text-orange-400"></i><span>AWS</span></li>
+                        <li class="flex items-center space-x-2"><i class="fas fa-cogs text-indigo-400"></i><span>REST APIs</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="container mx-auto px-6 md:px-12 py-20">
+            <h2 class="section-title text-3xl font-bold mb-12 text-white">My Projects</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1: Airbnb Website -->
+                <div class="bg-gray-800 rounded-2xl p-8 shadow-lg transform transition duration-500 hover:scale-105">
+                    <h3 class="text-2xl font-semibold text-white mb-4">Airbnb Website</h3>
+                    <p class="text-gray-300 mb-4">A brief description of the project. Explain what it does, what problem it solves, and your role in it. Mention key features and technologies used.</p>
+                    <ul class="flex flex-wrap gap-2 text-sm text-gray-400 mb-6">
+                        <li class="flex items-center space-x-2"><i class="fab fa-html5 text-orange-500"></i><span>HTML</span></li>
+                        <li class="flex items-center space-x-2"><i class="fab fa-css3-alt text-blue-500"></i><span>CSS</span></li>
+                        <li class="flex items-center space-x-2"><i class="fab fa-js text-yellow-400"></i><span>JavaScript</span></li>
+                        <li class="flex items-center space-x-2"><i class="fab fa-node-js text-green-500"></i><span>Node.js</span></li>
+                        <li class="flex items-center space-x-2"><i class="fas fa-rocket text-gray-400"></i><span>Express.js</span></li>
+                        <li class="flex items-center space-x-2"><i class="fas fa-leaf text-green-400"></i><span>MongoDB</span></li>
+                    </ul>
+                </div>
+                <!-- Project Card 2: Stock Exchange Website -->
+                <div class="bg-gray-800 rounded-2xl p-8 shadow-lg transform transition duration-500 hover:scale-105">
+                    <h3 class="text-2xl font-semibold text-white mb-4">Stock Exchange Website</h3>
+                    <p class="text-gray-300 mb-4">A brief description of the project. Explain what it does, what problem it solves, and your role in it. Mention key features and technologies used.</p>
+                    <ul class="flex flex-wrap gap-2 text-sm text-gray-400 mb-6">
+                        <li class="flex items-center space-x-2"><i class="fab fa-react text-cyan-400"></i><span>React</span></li>
+                        <li class="flex items-center space-x-2"><i class="fab fa-node-js text-green-500"></i><span>Node.js</span></li>
+                        <li class="flex items-center space-x-2"><i class="fas fa-leaf text-green-400"></i><span>MongoDB</span></li>
+                        <li class="flex items-center space-x-2"><i class="fab fa-aws text-orange-400"></i><span>AWS</span></li>
+                    </ul>
+                </div>
+                <!-- Project Card 3: Video Conferencing App -->
+                <div class="bg-gray-800 rounded-2xl p-8 shadow-lg transform transition duration-500 hover:scale-105">
+                    <h3 class="text-2xl font-semibold text-white mb-4">Video Conferencing App</h3>
+                    <p class="text-gray-300 mb-4">A brief description of the project. Explain what it does, what problem it solves, and your role in it. Mention key features and technologies used.</p>
+                    <ul class="flex flex-wrap gap-2 text-sm text-gray-400 mb-6">
+                        <li class="flex items-center space-x-2"><i class="fas fa-video text-red-500"></i><span>WebRTC</span></li>
+                        <li class="flex items-center space-x-2"><i class="fas fa-globe text-blue-400"></i><span>WebSocket</span></li>
+                        <li class="flex items-center space-x-2"><i class="fas fa-database text-indigo-400"></i><span>PostgreSQL</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="container mx-auto px-6 md:px-12 py-20">
+            <h2 class="section-title text-3xl font-bold mb-12 text-white text-center">Get In Touch</h2>
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-12">
+                <a href="mailto:talam8068@gmail.com" class="flex items-center space-x-4 bg-gray-800 rounded-full p-4 md:p-6 shadow-lg transform transition duration-300 hover:scale-105">
+                    <i class="fas fa-envelope text-red-400 text-3xl"></i>
+                    <span class="text-white text-lg">talam8068@gmail.com</span>
+                </a>
+                <a href="https://linkedin.com/in/tanzim-akhtar-4376631b6" target="_blank" class="flex items-center space-x-4 bg-gray-800 rounded-full p-4 md:p-6 shadow-lg transform transition duration-300 hover:scale-105">
+                    <i class="fab fa-linkedin text-red-400 text-3xl"></i>
+                    <span class="text-white text-lg">LinkedIn</span>
+                </a>
+                <a href="tel:8969233239" class="flex items-center space-x-4 bg-gray-800 rounded-full p-4 md:p-6 shadow-lg transform transition duration-300 hover:scale-105">
+                    <i class="fas fa-phone text-red-400 text-3xl"></i>
+                    <span class="text-white text-lg">8969233239</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center text-gray-500">
+        <p>&copy; 2024 Tanzim Akhtar. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Hide mobile menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+
+    <!-- JavaScript for typing animation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const textElement = document.getElementById('typing-text');
+            const text = "A passionate full stack developer";
+            let i = 0;
+            const speed = 70; // typing speed in milliseconds
+
+            function typeWriter() {
+                if (i < text.length) {
+                    textElement.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, speed);
+                }
+            }
+
+            typeWriter();
+        });
+    </script>
+
+</body>
+</html>
