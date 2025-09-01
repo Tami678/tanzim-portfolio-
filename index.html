@@ -84,17 +84,6 @@
             from, to { color: transparent }
             50% { color: #e94560; }
         }
-
-        #three-canvas {
-            width: 100% !important;
-            height: 100% !important;
-            max-width: 300px;
-            max-height: 300px;
-            border-radius: 9999px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-            position: relative; /* Changed to relative to stay in hero section */
-        }
         
         #background-canvas {
             position: fixed;
@@ -136,10 +125,26 @@
                 <a href="#projects" class="hover:text-red-400 transition duration-300">Projects</a>
                 <a href="#contact" class="hover:text-red-400 transition duration-300">Contact</a>
             </div>
-            <!-- Mobile Menu Button -->
-            <button id="menu-btn" class="md:hidden text-white focus:outline-none">
-                <i class="fas fa-bars text-2xl"></i>
-            </button>
+            
+            <!-- Profile Dropdown and Mobile Menu Button -->
+            <div class="flex items-center space-x-4 md:space-x-8">
+                <!-- Profile Image Button -->
+                <div class="relative">
+                    <button id="profile-btn" class="flex items-center space-x-2 text-white focus:outline-none">
+                        <img src="https://placehold.co/40x40/FFC0CB/000000?text=TA" alt="Profile" class="h-10 w-10 rounded-full border-2 border-pink-500 hover:scale-110 transition-transform duration-300">
+                    </button>
+                    <!-- Dropdown Menu -->
+                    <div id="profile-menu" class="hidden absolute right-0 mt-2 py-2 w-48 bg-gray-800 rounded-md shadow-xl z-20">
+                        <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Profile</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-gray-700">Logout</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
         </nav>
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-gray-900 bg-opacity-90 backdrop-blur-md absolute w-full py-4 text-center mt-2">
@@ -167,9 +172,9 @@
                         <span id="typing-text"></span><span class="blinking-cursor">|</span>
                     </p>
                 </div>
-                <!-- 3D Animation Canvas on the right -->
+                <!-- Image on the right -->
                 <div class="flex-shrink-0">
-                    <canvas id="three-canvas" class="rounded-full shadow-2xl"></canvas>
+                    <img src="https://avatars.githubusercontent.com/u/141411071?v=4alt="Tanzim Akhtar" class="rounded-full shadow-2xl w-full max-w-[300px] h-auto transition-transform duration-300 transform hover:scale-105">
                 </div>
             </div>
         </section>
@@ -320,20 +325,35 @@
         <p>&copy; 2024 Tanzim Akhtar. All Rights Reserved.</p>
     </footer>
 
-    <!-- JavaScript for Mobile Menu -->
+    <!-- JavaScript for Mobile Menu and Profile Dropdown -->
     <script>
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
+        const profileBtn = document.getElementById('profile-btn');
+        const profileMenu = document.getElementById('profile-menu');
 
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
+            profileMenu.classList.add('hidden'); // Hide profile menu when mobile menu is opened
         });
 
-        // Hide mobile menu when a link is clicked
+        profileBtn.addEventListener('click', (event) => {
+            profileMenu.classList.toggle('hidden');
+            event.stopPropagation(); // Prevent click from bubbling up to the window
+        });
+
+        // Hide menus when a link is clicked
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
             });
+        });
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.addEventListener('click', (event) => {
+            if (!profileMenu.contains(event.target) && !profileBtn.contains(event.target)) {
+                profileMenu.classList.add('hidden');
+            }
         });
     </script>
 
@@ -360,46 +380,7 @@
     <!-- JavaScript for Three.js 3D animation -->
     <script>
         window.onload = function() {
-            const heroCanvas = document.getElementById('three-canvas');
             const backgroundCanvas = document.getElementById('background-canvas');
-
-            // Hero Section Canvas
-            const heroScene = new THREE.Scene();
-            const heroCamera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-            const heroRenderer = new THREE.WebGLRenderer({ canvas: heroCanvas, alpha: true, antialias: true });
-            heroRenderer.setSize(heroCanvas.clientWidth, heroCanvas.clientHeight);
-
-            const heroGeometry = new THREE.DodecahedronGeometry(2, 0);
-            const heroMaterial = new THREE.MeshPhongMaterial({
-                color: 0xe94560,
-                specular: 0x5a5a5a,
-                shininess: 100
-            });
-            const heroObject = new THREE.Mesh(heroGeometry, heroMaterial);
-            heroScene.add(heroObject);
-
-            const heroAmbientLight = new THREE.AmbientLight(0x404040);
-            heroScene.add(heroAmbientLight);
-            const heroPointLight = new THREE.PointLight(0xffffff, 1, 100);
-            heroPointLight.position.set(5, 5, 5);
-            heroScene.add(heroPointLight);
-            heroCamera.position.z = 5;
-
-            let isDragging = false;
-            let previousMousePosition = { x: 0, y: 0 };
-            heroCanvas.addEventListener('mousedown', (e) => {
-                isDragging = true;
-                previousMousePosition = { x: e.clientX, y: e.clientY };
-            });
-            heroCanvas.addEventListener('mouseup', () => { isDragging = false; });
-            heroCanvas.addEventListener('mousemove', (e) => {
-                if (!isDragging) return;
-                const deltaX = e.clientX - previousMousePosition.x;
-                const deltaY = e.clientY - previousMousePosition.y;
-                heroObject.rotation.y += deltaX * 0.005;
-                heroObject.rotation.x += deltaY * 0.005;
-                previousMousePosition = { x: e.clientX, y: e.clientY };
-            });
 
             // Background Canvas
             const bgScene = new THREE.Scene();
@@ -440,28 +421,8 @@
             }
             animateBackground();
 
-            function animateHero() {
-                requestAnimationFrame(animateHero);
-                if (!isDragging) {
-                    heroObject.rotation.y += 0.005;
-                    heroObject.rotation.x += 0.002;
-                }
-                heroRenderer.render(heroScene, heroCamera);
-            }
-            animateHero();
-
             // Handle window resize
             window.addEventListener('resize', () => {
-                // Resize for hero canvas
-                const parent = heroCanvas.parentElement;
-                const size = Math.min(parent.clientWidth, parent.clientHeight, 300);
-                heroCanvas.width = size;
-                heroCanvas.height = size;
-                heroRenderer.setSize(size, size);
-                heroCamera.aspect = size / size;
-                heroCamera.updateProjectionMatrix();
-
-                // Resize for background canvas
                 bgCamera.aspect = window.innerWidth / window.innerHeight;
                 bgCamera.updateProjectionMatrix();
                 bgRenderer.setSize(window.innerWidth, window.innerHeight);
@@ -491,4 +452,3 @@
 
 </body>
 </html>
-
